@@ -54,6 +54,7 @@ type ControllerOptions struct {
 	EnabledControllers []string
 
 	ACMEHTTP01SolverImage                 string
+	ACMEHTTP01SolverImagePullSecret		  string
 	ACMEHTTP01SolverResourceRequestCPU    string
 	ACMEHTTP01SolverResourceRequestMemory string
 	ACMEHTTP01SolverResourceLimitsCPU     string
@@ -108,6 +109,7 @@ const (
 
 var (
 	defaultACMEHTTP01SolverImage                 = fmt.Sprintf("quay.io/jetstack/cert-manager-acmesolver:%s", util.AppVersion)
+	defaultACMEHTTP01SolverImagePullSecret       = ""
 	defaultACMEHTTP01SolverResourceRequestCPU    = "10m"
 	defaultACMEHTTP01SolverResourceRequestMemory = "64Mi"
 	defaultACMEHTTP01SolverResourceLimitsCPU     = "100m"
@@ -190,6 +192,10 @@ func (s *ControllerOptions) AddFlags(fs *pflag.FlagSet) {
 		"The set of controllers to enable.")
 
 	fs.StringVar(&s.ACMEHTTP01SolverImage, "acme-http01-solver-image", defaultACMEHTTP01SolverImage, ""+
+		"The docker image to use to solve ACME HTTP01 challenges. You most likely will not "+
+		"need to change this parameter unless you are testing a new feature or developing cert-manager.")
+
+	fs.StringVar(&s.ACMEHTTP01SolverImagePullSecret, "acme-http01-solver-image-pull-secret", defaultACMEHTTP01SolverImagePullSecret, ""+
 		"The docker image to use to solve ACME HTTP01 challenges. You most likely will not "+
 		"need to change this parameter unless you are testing a new feature or developing cert-manager.")
 

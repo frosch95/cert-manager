@@ -237,6 +237,7 @@ func buildControllerContext(ctx context.Context, stopCh <-chan struct{}, opts *o
 		Clock:                     clock.RealClock{},
 		ACMEOptions: controller.ACMEOptions{
 			HTTP01SolverImage:                 opts.ACMEHTTP01SolverImage,
+			HTTP01SolverImagePullSecret:       opts.ACMEHTTP01SolverImagePullSecret,
 			HTTP01SolverResourceRequestCPU:    HTTP01SolverResourceRequestCPU,
 			HTTP01SolverResourceRequestMemory: HTTP01SolverResourceRequestMemory,
 			HTTP01SolverResourceLimitsCPU:     HTTP01SolverResourceLimitsCPU,
